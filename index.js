@@ -125,8 +125,8 @@ DeviceClient.prototype.callAction = function(serviceId, actionName, params, head
       'Content-Type': 'text/xml; charset="utf-8"',
       'Content-Length': xml.length,
       'Connection': 'close',
-      'SOAPACTION': '"' + service.serviceType + '#' + actionName + '"'
-      ...headers,
+      'SOAPACTION': '"' + service.serviceType + '#' + actionName + '"',
+      ...(headers || {}),
     };
 
     debug('call action %s on service %s with params %j', actionName, serviceId, params);
