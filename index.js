@@ -81,7 +81,7 @@ DeviceClient.prototype.getServiceDescription = function(serviceId, callback) {
 };
 
 
-DeviceClient.prototype.callAction = function(serviceId, actionName, params, callback) {
+DeviceClient.prototype.callAction = function(serviceId, actionName, params, headers, callback) {
   var self = this;
   serviceId = resolveService(serviceId);
 
@@ -126,6 +126,7 @@ DeviceClient.prototype.callAction = function(serviceId, actionName, params, call
       'Content-Length': xml.length,
       'Connection': 'close',
       'SOAPACTION': '"' + service.serviceType + '#' + actionName + '"'
+      ...headers,
     };
 
     debug('call action %s on service %s with params %j', actionName, serviceId, params);
